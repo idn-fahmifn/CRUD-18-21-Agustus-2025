@@ -32,19 +32,25 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $item)
-                    <tr>
-                        <td>{{$item->nama_tempat}}</td>
-                        <td>{{$item->kode_ruangan}}</td>
-                        <td>
-                            <a href="" class="btn btn-info">detail</a>
-                            <a href="" class="btn btn-danger">hapus</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ $item->nama_tempat }}</td>
+                            <td>{{ $item->kode_ruangan }}</td>
+                            <td>
+                                <form action="{{route('tempat.destroy', $item->id)}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <a href="{{route('tempat.detail', $item->id)}}" 
+                                        class="btn btn-info">detail</a>
+                                    <button type="submit" class="btn btn-danger"
+                                     onclick="return confirm('Yakin mau dihapus?')">hapus</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

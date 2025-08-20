@@ -18,4 +18,6 @@ Route::get('tempat/{param}', [TempatController::class, 'detail'])
 ->name('tempat.detail');
 Route::put('tempat/{param}', [TempatController::class, 'update'])
 ->name('tempat.update');
+Route::put('tempat/{param}', [TempatController::class, 'destroy'])
+->name('tempat.destroy');
 

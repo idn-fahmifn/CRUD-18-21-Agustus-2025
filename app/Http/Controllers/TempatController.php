@@ -56,4 +56,12 @@ class TempatController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $data = Tempat::find($id);
+        $data->delete();
+        return back()->with('success', 'Tempat berhasil dihapus');
+    }
+
+
 }
