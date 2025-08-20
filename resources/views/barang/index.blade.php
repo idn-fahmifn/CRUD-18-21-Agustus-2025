@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('page-title')
-Halaman Tempat
+    Halaman Barang
 @endsection
 
 @section('content')
@@ -26,28 +26,34 @@ Halaman Tempat
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
-                    <th>Nama Tempat</th>
-                    <th>Kode Ruangan</th>
+                    <th>Nama Barang</th>
+                    <th>Tempat Penyimpanan</th>
+                    <th>Merk</th>
                     <th>Pilihan</th>
                 </thead>
-                <tbody>
-                    @foreach ($data as $item)
-                        <tr>
-                            <td>{{ $item->nama_tempat }}</td>
-                            <td>{{ $item->kode_ruangan }}</td>
-                            <td>
-                                <form action="{{route('tempat.destroy', $item->id)}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <a href="{{route('tempat.detail', $item->id)}}" 
-                                        class="btn btn-info">detail</a>
-                                    <button type="submit" class="btn btn-danger"
-                                     onclick="return confirm('Yakin mau dihapus?')">hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
+                @if ($data->isEmpty())
+                    <div class="alert alert-warning fade show mt-2" role="alert">
+                        <strong>Ops.</strong> Data barang belum dibuat.
+                    </div>
+                @else
+                    <tbody>
+                        @foreach ($data as $item)
+                            <tr>
+                                <td>{{ $item->nama_tempat }}</td>
+                                <td>{{ $item->kode_ruangan }}</td>
+                                <td>
+                                    <form action="{{ route('tempat.destroy', $item->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <a href="{{ route('tempat.detail', $item->id) }}" class="btn btn-info">detail</a>
+                                        <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Yakin mau dihapus?')">hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                @endif
             </table>
         </div>
 

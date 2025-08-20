@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TempatController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,11 @@ Route::get('tempat/{param}', [TempatController::class, 'detail'])
 ->name('tempat.detail');
 Route::put('tempat/{param}', [TempatController::class, 'update'])
 ->name('tempat.update');
-Route::put('tempat/{param}', [TempatController::class, 'destroy'])
+Route::delete('tempat/{param}', [TempatController::class, 'destroy'])
 ->name('tempat.destroy');
+
+Route::get('barang', [BarangController::class, 'index'])
+->name('barang.index');
+
+
 

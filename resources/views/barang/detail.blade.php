@@ -1,18 +1,19 @@
 @extends('template.template')
 
 @section('page-title')
-Halaman Tempat
+    Detail {{$data->nama_tempat}}
 @endsection
 
 @section('content')
     <div class="card mt-2 p-4">
         <div class="d-flex justify-content-between">
             <div class="">
-                <div class="card-title h6">Halaman data</div>
+                <div class="card-title h6">{{$data->nama_tempat}}</div>
+                <span class="text-muted">{{$data->kode_ruangan}}</span>
             </div>
             <div class="">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Tambah Data
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Edit {{$data->nama_tempat}}
                 </button>
             </div>
         </div>
@@ -26,43 +27,28 @@ Halaman Tempat
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
-                    <th>Nama Tempat</th>
-                    <th>Kode Ruangan</th>
-                    <th>Pilihan</th>
+                    <th>Nama Barang</th>
+                    <th>Merk</th>
+                    <th>Harga</th>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
-                        <tr>
-                            <td>{{ $item->nama_tempat }}</td>
-                            <td>{{ $item->kode_ruangan }}</td>
-                            <td>
-                                <form action="{{route('tempat.destroy', $item->id)}}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <a href="{{route('tempat.detail', $item->id)}}" 
-                                        class="btn btn-info">detail</a>
-                                    <button type="submit" class="btn btn-danger"
-                                     onclick="return confirm('Yakin mau dihapus?')">hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
-
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tempat</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Tempat</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('tempat.store') }}" method="post">
+                <form action="{{route('tempat.update',$data->id)}}" method="post">
                     @csrf
+                    @method('put')
                     <div class="modal-body">
                         @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
@@ -76,13 +62,13 @@ Halaman Tempat
 
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="nama_tempat" required class="form-control" id="floatingInput">
+                                <input type="text" name="nama_tempat" value="{{$data->nama_tempat}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Nama Tempat</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="kode_ruangan" required class="form-control" id="floatingInput">
+                                <input type="text" name="kode_ruangan" value="{{$data->kode_ruangan}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Kode Ruangan</label>
                             </div>
                         </div>
