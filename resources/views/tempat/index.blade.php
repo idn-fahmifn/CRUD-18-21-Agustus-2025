@@ -16,6 +16,12 @@
                 </button>
             </div>
         </div>
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                <strong>Yeay!</strong> {{ session('success') }}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,7 +39,7 @@
                             <div class="alert alert-danger" role="alert">
                                 <ul>
                                     @foreach ($errors->all() as $item)
-                                        <li>{{$item}}</li>
+                                        <li>{{ $item }}</li>
                                     @endforeach
                                 </ul>
                             </div>
