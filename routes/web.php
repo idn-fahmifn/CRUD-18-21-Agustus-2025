@@ -10,7 +10,12 @@ Route::get('/', function () {
 Route::view('tampilan','template.template');
 
 // Route untuk tempat
-Route::get('tempat', [TempatController::class, 'index'])->name('tempat.index');
-Route::post('tempat', [TempatController::class, 'store'])->name('tempat.store');
-Route::get('tempat/{param}', [TempatController::class, 'detail'])->name('tempat.detail');
+Route::get('tempat', [TempatController::class, 'index'])
+->name('tempat.index');
+Route::post('tempat', [TempatController::class, 'store'])
+->name('tempat.store');
+Route::get('tempat/{param}', [TempatController::class, 'detail'])
+->name('tempat.detail');
+Route::put('tempat/{param}', [TempatController::class, 'update'])
+->name('tempat.update');
 
