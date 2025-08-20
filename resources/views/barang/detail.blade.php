@@ -54,11 +54,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Tempat</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Barang</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('barang.store') }}" method="post">
+                <form action="#" method="post">
                     @csrf
                     <div class="modal-body">
                         @if ($errors->any())
@@ -73,14 +73,14 @@
 
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="nama_barang" required class="form-control" id="floatingInput">
+                                <input type="text" name="nama_barang" value="{{$data->nama_barang}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Nama Barang</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
                                 <select name="tempat_id" id="floatingInput" class="form-control" required>
-                                    <option value="">-Pilih tempat penyimpanan-</option>
+                                    <option value="{{$data->tempat_id}}">-{{$data->tempat->nama_tempat}}-</option>
                                     @foreach ($tempat as $item)
                                         <option value="{{ $item->id }}">{{ $item->nama_tempat }}</option>
                                     @endforeach
@@ -90,13 +90,13 @@
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="merk" required class="form-control" id="floatingInput">
+                                <input type="text" name="merk" value="{{$data->merk}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Merk Barang</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="number" name="harga" required class="form-control" id="floatingInput">
+                                <input type="number" name="harga" value="{{$data->harga}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Harga</label>
                             </div>
                         </div>
