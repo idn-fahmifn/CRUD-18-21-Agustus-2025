@@ -24,6 +24,10 @@ Route::delete('tempat/{param}', [TempatController::class, 'destroy'])
 
 Route::get('barang', [BarangController::class, 'index'])
 ->name('barang.index');
+Route::post('barang', [BarangController::class, 'store'])
+->name('barang.store');
+Route::get('barang/{param}', [BarangController::class, 'detail'])
+->name('barang.detail');
 
 
 

@@ -45,8 +45,9 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <td>{{ $item->nama_tempat }}</td>
-                                <td>{{ $item->kode_ruangan }}</td>
+                                <td>{{ $item->nama_barang }}</td>
+                                <td>{{ $item->tempat->nama_tempat }}</td>
+                                <td>{{ $item->merk }}</td>
                                 <td>
                                     <form action="{{ route('tempat.destroy', $item->id) }}" method="post">
                                         @csrf
@@ -73,7 +74,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="#" method="post">
+                <form action="{{route('barang.store')}}" method="post">
                     @csrf
                     <div class="modal-body">
                         @if ($errors->any())
@@ -97,7 +98,7 @@
                                 <select name="tempat_id" id="floatingInput" class="form-control" required>
                                     <option value="">-Pilih tempat penyimpanan-</option>
                                     @foreach ($tempat as $item)
-                                        <option value="$item->id">{{ $item->nama_tempat }}</option>
+                                        <option value="{{$item->id}}">{{ $item->nama_tempat }}</option>
                                     @endforeach
                                 </select>
                                 <label for="floatingInput">Tempat Penyimpanan</label>

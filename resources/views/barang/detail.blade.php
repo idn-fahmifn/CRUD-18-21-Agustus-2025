@@ -1,15 +1,15 @@
 @extends('template.template')
 
 @section('page-title')
-    Detail {{$data->nama_tempat}}
+    Detail {{$data->nama_barang}}
 @endsection
 
 @section('content')
     <div class="card mt-2 p-4">
         <div class="d-flex justify-content-between">
             <div class="">
-                <div class="card-title h6">{{$data->nama_tempat}}</div>
-                <span class="text-muted">{{$data->kode_ruangan}}</span>
+                <div class="card-title h6">{{$data->nama_barang}}</div>
+                <span class="text-muted">{{$data->merk}}</span>
             </div>
             <div class="">
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -25,14 +25,24 @@
         @endif
         <hr>
         <div class="table-responsive">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <th>Nama Barang</th>
-                    <th>Merk</th>
-                    <th>Harga</th>
-                </thead>
+            <table class="table table-borderless">
                 <tbody>
-                    
+                    <tr>
+                        <td>Nama Barang</td>
+                        <td>{{$data->nama_barang}}</td>
+                    </tr>
+                    <tr>
+                        <td>Merk</td>
+                        <td>{{$data->merk}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tempat Penyimpanan</td>
+                        <td>{{$data->tempat->nama_tempat}} / <span class="text-muted">{{$data->tempat->kode_ruangan}}</span> </td>
+                    </tr>
+                    <tr>
+                        <td>Harga</td>
+                        <td>IDR. {{number_format($data->harga)}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
