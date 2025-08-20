@@ -32,9 +32,15 @@
                     <th>Pilihan</th>
                 </thead>
                 @if ($data->isEmpty())
-                    <div class="alert alert-warning fade show mt-2" role="alert">
-                        <strong>Ops.</strong> Data barang belum dibuat.
-                    </div>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">
+                                <div class="alert alert-warning fade show mt-2" role="alert">
+                                    <strong>Ops.</strong> Data barang belum dibuat.
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
                 @else
                     <tbody>
                         @foreach ($data as $item)
@@ -63,11 +69,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tempat</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Barang</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('tempat.store') }}" method="post">
+                <form action="#" method="post">
                     @csrf
                     <div class="modal-body">
                         @if ($errors->any())
@@ -82,14 +88,31 @@
 
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="nama_tempat" required class="form-control" id="floatingInput">
-                                <label for="floatingInput">Nama Tempat</label>
+                                <input type="text" name="nama_barang" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Nama Barang</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="kode_ruangan" required class="form-control" id="floatingInput">
-                                <label for="floatingInput">Kode Ruangan</label>
+                                <select name="tempat_id" id="floatingInput" class="form-control" required>
+                                    <option value="">-Pilih tempat penyimpanan-</option>
+                                    @foreach ($tempat as $item)
+                                        <option value="$item->id">{{ $item->nama_tempat }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="floatingInput">Tempat Penyimpanan</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="merk" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Merk Barang</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="number" name="harga" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Harga</label>
                             </div>
                         </div>
                     </div>
