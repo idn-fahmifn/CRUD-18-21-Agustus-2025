@@ -1,19 +1,19 @@
 @extends('template.template')
 
 @section('page-title')
-    Detail {{$data->nama_barang}}
+    Detail {{ $data->nama_barang }}
 @endsection
 
 @section('content')
     <div class="card mt-2 p-4">
         <div class="d-flex justify-content-between">
             <div class="">
-                <div class="card-title h6">{{$data->nama_barang}}</div>
-                <span class="text-muted">{{$data->merk}}</span>
+                <div class="card-title h6">{{ $data->nama_barang }}</div>
+                <span class="text-muted">{{ $data->merk }}</span>
             </div>
             <div class="">
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Edit {{$data->nama_tempat}}
+                    Edit {{ $data->nama_tempat }}
                 </button>
             </div>
         </div>
@@ -29,19 +29,21 @@
                 <tbody>
                     <tr>
                         <td>Nama Barang</td>
-                        <td>{{$data->nama_barang}}</td>
+                        <td>{{ $data->nama_barang }}</td>
                     </tr>
                     <tr>
                         <td>Merk</td>
-                        <td>{{$data->merk}}</td>
+                        <td>{{ $data->merk }}</td>
                     </tr>
                     <tr>
                         <td>Tempat Penyimpanan</td>
-                        <td>{{$data->tempat->nama_tempat}} / <span class="text-muted">{{$data->tempat->kode_ruangan}}</span> </td>
+                        <td>{{ $data->tempat->nama_tempat }}
+                            / <span class="text-muted">{{ $data->tempat->kode_ruangan }}</span>
+                        </td>
                     </tr>
                     <tr>
                         <td>Harga</td>
-                        <td>IDR. {{number_format($data->harga)}}</td>
+                        <td>IDR. {{ number_format($data->harga) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -56,9 +58,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{route('tempat.update',$data->id)}}" method="post">
+                <form action="{{ route('barang.store') }}" method="post">
                     @csrf
-                    @method('put')
                     <div class="modal-body">
                         @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
@@ -72,14 +73,31 @@
 
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="nama_tempat" value="{{$data->nama_tempat}}" required class="form-control" id="floatingInput">
-                                <label for="floatingInput">Nama Tempat</label>
+                                <input type="text" name="nama_barang" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Nama Barang</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="kode_ruangan" value="{{$data->kode_ruangan}}" required class="form-control" id="floatingInput">
-                                <label for="floatingInput">Kode Ruangan</label>
+                                <select name="tempat_id" id="floatingInput" class="form-control" required>
+                                    <option value="">-Pilih tempat penyimpanan-</option>
+                                    @foreach ($tempat as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_tempat }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="floatingInput">Tempat Penyimpanan</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="merk" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Merk Barang</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="number" name="harga" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Harga</label>
                             </div>
                         </div>
                     </div>
@@ -89,6 +107,8 @@
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
+
+
 
             </div>
         </div>

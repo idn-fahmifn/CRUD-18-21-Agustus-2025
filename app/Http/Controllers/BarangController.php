@@ -40,7 +40,9 @@ class BarangController extends Controller
     }
     public function detail($id)
     {
-        $data = Barang::find($id);
-        return view('barang.detail', compact('data'));
+        return view('barang.detail', [
+            'data' => Barang::find($id),
+            'tempat' => Tempat::all()
+        ]);
     }
 }
