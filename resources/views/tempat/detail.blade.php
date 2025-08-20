@@ -1,14 +1,15 @@
 @extends('template.template')
 
 @section('page-title')
-    Halaman Tempat
+    Detail {{$data->nama_tempat}}
 @endsection
 
 @section('content')
     <div class="card mt-2 p-4">
         <div class="d-flex justify-content-between">
             <div class="">
-                <div class="card-title h6">Halaman data</div>
+                <div class="card-title h6">{{$data->nama_tempat}}</div>
+                <span class="text-muted">{{$data->kode_ruangan}}</span>
             </div>
             <div class="">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -26,25 +27,15 @@
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
-                    <th>Nama Tempat</th>
-                    <th>Kode Ruangan</th>
-                    <th>Pilihan</th>
+                    <th>Nama Barang</th>
+                    <th>Merk</th>
+                    <th>Harga</th>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
-                    <tr>
-                        <td>{{$item->nama_tempat}}</td>
-                        <td>{{$item->kode_ruangan}}</td>
-                        <td>
-                            <a href="" class="btn btn-info">detail</a>
-                            <a href="" class="btn btn-danger">hapus</a>
-                        </td>
-                    </tr>
-                    @endforeach
+                    
                 </tbody>
             </table>
         </div>
-        
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

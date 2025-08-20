@@ -9,7 +9,8 @@ class TempatController extends Controller
 {
     public function index()
     {
-        return view('tempat.index');
+        $data = Tempat::all();
+        return view('tempat.index', compact('data'));
     }
 
     public function store(Request $request)
@@ -27,6 +28,12 @@ class TempatController extends Controller
 
         // arahkan ke index
         return back()->with('success', 'Data tempat berhasil ditambahkan');
+    }
+
+    public function detail($id)
+    {
+        $data = Tempat::find($id);
+        return view('tempat.detail', compact('data'));
     }
 
 }
