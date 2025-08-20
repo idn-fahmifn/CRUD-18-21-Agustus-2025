@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\Tempat;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,8 @@ class TempatController extends Controller
     public function detail($id)
     {
         $data = Tempat::find($id);
-        return view('tempat.detail', compact('data'));
+        $barang = Barang::where('tempat_id', $id)->get();
+        return view('tempat.detail', compact('data', 'barang'));
     }
 
     public function update(Request $request, $id)

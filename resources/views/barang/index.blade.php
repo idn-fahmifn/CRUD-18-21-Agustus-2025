@@ -49,10 +49,10 @@
                                 <td>{{ $item->tempat->nama_tempat }}</td>
                                 <td>{{ $item->merk }}</td>
                                 <td>
-                                    <form action="{{ route('tempat.destroy', $item->id) }}" method="post">
+                                    <form action="{{ route('barang.destroy', $item->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <a href="{{ route('tempat.detail', $item->id) }}" class="btn btn-info">detail</a>
+                                        <a href="{{ route('barang.detail', $item->id) }}" class="btn btn-info">detail</a>
                                         <button type="submit" class="btn btn-danger"
                                             onclick="return confirm('Yakin mau dihapus?')">hapus</button>
                                     </form>

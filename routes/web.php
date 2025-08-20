@@ -28,6 +28,10 @@ Route::post('barang', [BarangController::class, 'store'])
 ->name('barang.store');
 Route::get('barang/{param}', [BarangController::class, 'detail'])
 ->name('barang.detail');
+Route::put('barang/{param}', [BarangController::class, 'update'])
+->name('barang.update');
+Route::delete('barang/{param}', [BarangController::class, 'destroy'])
+->name('barang.destroy');
 
 
 

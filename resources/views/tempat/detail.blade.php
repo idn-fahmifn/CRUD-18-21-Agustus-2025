@@ -32,7 +32,20 @@
                     <th>Harga</th>
                 </thead>
                 <tbody>
-                    
+                    @forelse ($barang as $item)
+                    {{-- menjalankan jika ada barang pada tempat ini --}}
+                    <a href="#">
+                        <tr>
+                            <td>{{$item->nama_barang}}</td>
+                            <td>{{$item->merk}}</td>
+                            <td>IDR. {{number_format($item->harga)}}</td>
+                        </tr>
+                    </a>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="text-center">Data barang belum ada.</td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -47,7 +60,7 @@
                 </div>
 
                 <form action="{{route('tempat.update',$data->id)}}" method="post">
-                    @csrf
+                    @csrf\
                     @method('put')
                     <div class="modal-body">
                         @if ($errors->any())

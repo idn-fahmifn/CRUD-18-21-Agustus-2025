@@ -45,4 +45,34 @@ class BarangController extends Controller
             'tempat' => Tempat::all()
         ]);
     }
+     public function update(Request $request, $id)
+    {
+        // mencari data yang akan diedit
+        $data = Barang::find($id);
+
+        $request->validate([
+            'nama_barang' => ['required', 'string', 'min:5', 'max:30'],
+            'merk' => ['required', 'string', 'min:5', 'max:30'],
+            'harga' => ['required', 'numeric', 'min:100'],
+            'tempat_id' => ['required', 'numeric'],
+        ]);
+
+        // perintah untuk mengubah data
+        $data->update([
+            'nama_barang' => $request->nama_barang,
+            'merk' => $request->merk,
+            'harga' => $request->harga,
+            'tempat_id' => $request->tempat_id,
+        ]);
+
+        return back()->with('success', 'Barang berhasil diubah');
+
+    }
+
+    public function destroy($id)
+    {
+        $data = Barang::find($id);
+        $data->delete();
+        return back()->with('success', 'Tempat berhasil dihapus');
+    }
 }
