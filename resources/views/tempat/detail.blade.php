@@ -12,8 +12,8 @@
                 <span class="text-muted">{{$data->kode_ruangan}}</span>
             </div>
             <div class="">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Tambah Data
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Edit {{$data->nama_tempat}}
                 </button>
             </div>
         </div>
@@ -42,12 +42,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tempat</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Tempat</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{ route('tempat.store') }}" method="post">
+                <form action="#" method="post">
                     @csrf
+                    @method('put')
                     <div class="modal-body">
                         @if ($errors->any())
                             <div class="alert alert-danger" role="alert">
@@ -61,13 +62,13 @@
 
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="nama_tempat" required class="form-control" id="floatingInput">
+                                <input type="text" name="nama_tempat" value="{{$data->nama_tempat}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Nama Tempat</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="kode_ruangan" required class="form-control" id="floatingInput">
+                                <input type="text" name="kode_ruangan" value="{{$data->kode_ruangan}}" required class="form-control" id="floatingInput">
                                 <label for="floatingInput">Kode Ruangan</label>
                             </div>
                         </div>

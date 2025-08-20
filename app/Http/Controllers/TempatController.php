@@ -36,4 +36,24 @@ class TempatController extends Controller
         return view('tempat.detail', compact('data'));
     }
 
+    public function update(Request $request, $id)
+    {
+        // mencari data yang akan diedit
+        $data = Tempat::find($id);
+
+        $request->validate([
+            'nama_tempat' => ['required', 'string', 'min:5', 'max:30'],
+            'kode_ruangan' => ['required', 'string', 'min:5', 'max:30'],
+        ]);
+
+        // perintah untuk mengubah data
+        $data->update([
+            'nama_tempat' => $request->nama_tempat,
+            'kode_ruangan' => $request->kode_ruangan,
+        ]);
+
+        return back()->with('success', 'Tempat berhasil diubah');
+
+    }
+
 }
