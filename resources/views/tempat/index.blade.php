@@ -22,16 +22,43 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tempat</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+
+                <form action="{{ route('tempat.store') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $item)
+                                        <li>{{$item}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="nama_tempat" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Nama Tempat</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="kode_ruangan" required class="form-control" id="floatingInput">
+                                <label for="floatingInput">Kode Ruangan</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>

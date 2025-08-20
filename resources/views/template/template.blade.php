@@ -39,9 +39,11 @@
     <section id="body">
         <div class="container">
             <div class="card mt-4 p-4">
-                <div class="card-title h5">Judul Halaman</div>
+                <div class="card-title h5">@yield('page-title')</div>
                 <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, enim.</span>
             </div>
+
+            @yield('content')
             
         </div>
     </section>
