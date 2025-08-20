@@ -1,19 +1,19 @@
 @extends('template.template')
 
 @section('page-title')
-    Detail {{$data->nama_tempat}}
+    Detail {{ $data->nama_tempat }}
 @endsection
 
 @section('content')
     <div class="card mt-2 p-4">
         <div class="d-flex justify-content-between">
             <div class="">
-                <div class="card-title h6">{{$data->nama_tempat}}</div>
-                <span class="text-muted">{{$data->kode_ruangan}}</span>
+                <div class="card-title h6">{{ $data->nama_tempat }}</div>
+                <span class="text-muted">{{ $data->kode_ruangan }}</span>
             </div>
             <div class="">
                 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Edit {{$data->nama_tempat}}
+                    Edit {{ $data->nama_tempat }}
                 </button>
             </div>
         </div>
@@ -33,18 +33,19 @@
                 </thead>
                 <tbody>
                     @forelse ($barang as $item)
-                    {{-- menjalankan jika ada barang pada tempat ini --}}
-                    <a href="#">
+                        {{-- menjalankan jika ada barang pada tempat ini --}}
                         <tr>
-                            <td>{{$item->nama_barang}}</td>
-                            <td>{{$item->merk}}</td>
-                            <td>IDR. {{number_format($item->harga)}}</td>
+                            <td>
+                                <a href="{{ route('barang.detail', $item->id) }}" class="text-primary btn">
+                                    {{ $item->nama_barang }}</a>
+                            </td>
+                            <td>{{ $item->merk }}</td>
+                            <td>IDR. {{ number_format($item->harga) }}</td>
                         </tr>
-                    </a>
                     @empty
-                    <tr>
-                        <td colspan="3" class="text-center">Data barang belum ada.</td>
-                    </tr>
+                        <tr>
+                            <td colspan="3" class="text-center">Data barang belum ada.</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
@@ -59,7 +60,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="{{route('tempat.update',$data->id)}}" method="post">
+                <form action="{{ route('tempat.update', $data->id) }}" method="post">
                     @csrf\
                     @method('put')
                     <div class="modal-body">
@@ -75,13 +76,15 @@
 
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="nama_tempat" value="{{$data->nama_tempat}}" required class="form-control" id="floatingInput">
+                                <input type="text" name="nama_tempat" value="{{ $data->nama_tempat }}" required
+                                    class="form-control" id="floatingInput">
                                 <label for="floatingInput">Nama Tempat</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-floating mb-3">
-                                <input type="text" name="kode_ruangan" value="{{$data->kode_ruangan}}" required class="form-control" id="floatingInput">
+                                <input type="text" name="kode_ruangan" value="{{ $data->kode_ruangan }}" required
+                                    class="form-control" id="floatingInput">
                                 <label for="floatingInput">Kode Ruangan</label>
                             </div>
                         </div>

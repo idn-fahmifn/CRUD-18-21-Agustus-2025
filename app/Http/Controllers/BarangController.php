@@ -40,12 +40,20 @@ class BarangController extends Controller
     }
     public function detail($id)
     {
+        $data = Barang::where('id', $id)->first();
+
+        if ($data) {
+            $data = Barang::find($id);
+        } else {
+            return "Barang tidak ada";
+        }
+
         return view('barang.detail', [
-            'data' => Barang::find($id),
+            'data' => $data,
             'tempat' => Tempat::all()
         ]);
     }
-     public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         // mencari data yang akan diedit
         $data = Barang::find($id);

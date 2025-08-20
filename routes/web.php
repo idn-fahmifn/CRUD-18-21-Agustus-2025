@@ -33,5 +33,9 @@ Route::put('barang/{param}', [BarangController::class, 'update'])
 Route::delete('barang/{param}', [BarangController::class, 'destroy'])
 ->name('barang.destroy');
 
+Route::fallback(function(){
+    return "halaman tidak ditemukan";
+});
+
 
 
